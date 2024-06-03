@@ -1,0 +1,9 @@
+query Mocks {
+  mocks {
+    createdAt
+    foo
+    id
+    publishedAt
+    updatedAt
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "extends": ["next/core-web-vitals", "eslint:recommended", "prettier", "plugin:react-hooks/recommended"],
+  "plugins": ["prettier", "react-refresh", "simple-import-sort"],
+  "ignorePatterns": ["**/generated/*"],
+  "rules": {
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "prettier/prettier": "warn",
+    "no-console": "warn",
+    "prefer-const": "warn",
+    "simple-import-sort/imports": [
+      "warn",
+      {
+        "groups": [
+          // Packages `react` or 'next' related packages come first.
+          ["^react", "^@?\\w", "^next", "^@?\\w"],
+
+          // Internal packages.
+          ["^(@|components)(/.*|$)"],
+          // Side effect imports.
+          ["^\\u0000"],
+          // Parent imports. Put `..` last.
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          // Other relative imports. Put same-folder imports and `.` last.
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          // Style imports.
+          ["^.+\\.?(css)$"]
+        ]
+      }
+    ]
+  }
+}
