@@ -2,7 +2,7 @@ import { Button } from "@/ui/components";
 
 import * as styles from "./page.css";
 
-export default function Home() {
+export default function IndexPage() {
   return (
     <>
       <h1 className={styles.pageTitle}>Hello</h1>
