@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Button } from "@/ui/components";
 
 import * as styles from "./page.css";
@@ -34,6 +36,20 @@ export default function IndexPage() {
           Large Secondary
         </Button>
       </div>
+
+      <Link
+        href="/home"
+        style={{
+          position: "absolute",
+          bottom: "16px",
+          left: "16px",
+          right: "16px",
+        }}
+      >
+        <Button variant="primary" size="lg" fullWidth>
+          Get started
+        </Button>
+      </Link>
     </>
   );
 }

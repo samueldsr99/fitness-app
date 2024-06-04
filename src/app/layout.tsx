@@ -5,7 +5,7 @@ import { Outfit } from "next/font/google";
 import { themeClass } from "@/ui/theme/index.css";
 import { clsx } from "@/ui/utils";
 
-import { Navigation } from "./_components/navigation";
+import { NavigationHandler } from "./_components/NavigationHandler";
 
 import "./globals.css";
 import * as styles from "./layout.css";
@@ -25,10 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(outfit.className, themeClass, styles.root)}>
-        <main className={styles.main}>
-          {children}
-          <Navigation />
-        </main>
+        <main className={styles.main}>{children}</main>
+        <NavigationHandler />
       </body>
     </html>
   );

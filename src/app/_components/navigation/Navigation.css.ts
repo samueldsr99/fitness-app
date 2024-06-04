@@ -15,7 +15,8 @@ export const root = style({
 
   display: "flex",
   justifyContent: "space-between",
-  gap: spacing(4),
+  gap: spacing(2),
+  overflow: "auto",
 
   boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
 });

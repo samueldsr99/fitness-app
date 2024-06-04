@@ -26,8 +26,7 @@ const NavItem = ({ href, isActive, icon, text }: NavItemProps) => {
   return (
     <Link href={href} className={clsx(styles.navItem, isActive && styles.navItemActive)}>
       {icon}
-      {/* {isActive && <span>{text}</span>} */}
-      <span style={{ display: isActive ? "block" : "none" }}>{text}</span>
+      {isActive && <span>{text}</span>}
     </Link>
   );
 };
