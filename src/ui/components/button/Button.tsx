@@ -10,6 +10,7 @@ type ButtonVariant = "primary" | "secondary";
 export interface ButtonProps extends ComponentProps<"button"> {
   variant?: "primary" | "secondary";
   size?: ButtonSize;
+  fullWidth?: boolean;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -23,6 +24,11 @@ const sizeStyles: Record<ButtonSize, string> = {
   lg: styles.sizeLg,
 };
 
-export const Button = ({ className, variant = "secondary", size = "md", ...props }: ButtonProps) => {
-  return <button className={clsx(styles.root, variantStyles[variant], sizeStyles[size], className)} {...props} />;
+export const Button = ({ className, variant = "secondary", size = "md", fullWidth = false, ...props }: ButtonProps) => {
+  return (
+    <button
+      className={clsx(styles.root, variantStyles[variant], sizeStyles[size], fullWidth && styles.fullWidth, className)}
+      {...props}
+    />
+  );
 };

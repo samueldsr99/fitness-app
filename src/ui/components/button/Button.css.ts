@@ -59,3 +59,7 @@ export const sizeLg = style({
   ...vars.font.lg,
   fontWeight: vars.font.semibold,
 });
+
+export const fullWidth = style({
+  width: "100%",
+});
