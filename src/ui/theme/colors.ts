@@ -1,7 +1,7 @@
 export const colors = {
   transparent: "transparent",
   current: "currentColor",
-  black: "#000",
+  black: "#BBF246",
   white: "#fff",
 
   primary: {
