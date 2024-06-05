@@ -23,16 +23,16 @@ export const fonts = {
     lineHeight: "32px",
   },
   "2xl": {
+    fontSize: "28px",
+    lineHeight: "36px",
+  },
+  "3xl": {
     fontSize: "32px",
     lineHeight: "40px",
   },
-  "3xl": {
-    fontSize: "40px",
-    lineHeight: "48px",
-  },
   "4xl": {
-    fontSize: "48px",
-    lineHeight: "56px",
+    fontSize: "44px",
+    lineHeight: "52px",
   },
   "5xl": {
     fontSize: "64px",

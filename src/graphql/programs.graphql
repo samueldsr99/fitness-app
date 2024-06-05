@@ -23,6 +23,9 @@ query ProgramById($id: ID!) {
         url
       }
       expectedDuration
+      exercises {
+        id
+      }
     }
   }
 }
