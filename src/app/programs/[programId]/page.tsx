@@ -10,11 +10,11 @@ import { WorkoutCard } from "./_components/workout-card";
 import * as styles from "./page.css";
 
 interface ProgramDetailsPageProps {
-  params: { id: string };
+  params: { programId: string };
 }
 
 export default async function ProgramDetailsPage({ params }: ProgramDetailsPageProps) {
-  const { data } = await sdk.ProgramById({ id: params.id });
+  const { data } = await sdk.ProgramById({ id: params.programId });
 
   const program = data.program;
 
@@ -51,7 +51,7 @@ export default async function ProgramDetailsPage({ params }: ProgramDetailsPageP
             <WorkoutCard
               key={workout.id}
               name={workout.name}
-              href={`/programs/${params.id}/workouts/${workout.id}`}
+              href={`/programs/${params.programId}/workouts/${workout.id}`}
               duration={workout.expectedDuration}
               previewImageUrl={workout.previewImage.url}
             />
