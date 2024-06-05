@@ -9,6 +9,17 @@ query PopularPrograms {
   }
 }
 
+query AllPrograms {
+  programs {
+    id
+    name
+    previewImage {
+      url
+    }
+    difficulty
+  }
+}
+
 query ProgramById($id: ID!) {
   program(where: { id: $id }) {
     name

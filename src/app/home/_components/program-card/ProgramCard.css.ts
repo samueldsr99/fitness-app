@@ -7,7 +7,8 @@ export const root = style({
   display: "block",
   position: "relative",
   borderRadius: vars.border.radius["2xl"],
-  width: 330,
+  minWidth: 330,
+  width: "100%",
   height: 200,
 
   transition: "transform 0.2s",

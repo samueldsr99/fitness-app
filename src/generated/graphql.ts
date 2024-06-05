@@ -5337,6 +5337,11 @@ export type PopularProgramsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type PopularProgramsQuery = { __typename?: 'Query', programs: Array<{ __typename?: 'Program', id: string, name: string, difficulty: string, previewImage: { __typename?: 'Asset', url: string } }> };
 
+export type AllProgramsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllProgramsQuery = { __typename?: 'Query', programs: Array<{ __typename?: 'Program', id: string, name: string, difficulty: string, previewImage: { __typename?: 'Asset', url: string } }> };
+
 export type ProgramByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -5352,6 +5357,18 @@ export type WorkoutsQuery = { __typename?: 'Query', workouts: Array<{ __typename
 
 export const PopularProgramsDocument = gql`
     query PopularPrograms {
+  programs {
+    id
+    name
+    previewImage {
+      url
+    }
+    difficulty
+  }
+}
+    `;
+export const AllProgramsDocument = gql`
+    query AllPrograms {
   programs {
     id
     name
@@ -5408,12 +5425,16 @@ export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, str
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType, _variables) => action();
 const PopularProgramsDocumentString = print(PopularProgramsDocument);
+const AllProgramsDocumentString = print(AllProgramsDocument);
 const ProgramByIdDocumentString = print(ProgramByIdDocument);
 const WorkoutsDocumentString = print(WorkoutsDocument);
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     PopularPrograms(variables?: PopularProgramsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: PopularProgramsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<PopularProgramsQuery>(PopularProgramsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PopularPrograms', 'query', variables);
+    },
+    AllPrograms(variables?: AllProgramsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: AllProgramsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<AllProgramsQuery>(AllProgramsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'AllPrograms', 'query', variables);
     },
     ProgramById(variables: ProgramByIdQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: ProgramByIdQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<ProgramByIdQuery>(ProgramByIdDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ProgramById', 'query', variables);

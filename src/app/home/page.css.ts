@@ -8,7 +8,6 @@ export const popularPrograms = style({
 
 export const popularProgramsSlides = style({
   marginTop: spacing(3),
-  width: "500%",
   overflowX: "auto",
   display: "flex",
   gap: 20,
