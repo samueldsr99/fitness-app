@@ -5,7 +5,7 @@ import { Header } from "@/app/_components/header";
 import { sdk } from "@/lib/hygraph-client";
 import { ClockIcon } from "@/ui/icons";
 
-import { ExerciseCard } from "../_components/exercise-card/ExerciseCard";
+import { ExerciseCard } from "./_components/exercise-card/ExerciseCard";
 
 import * as styles from "./page.css";
 

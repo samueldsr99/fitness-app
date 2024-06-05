@@ -1,14 +1,10 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
 
-import { themeClass } from "@/ui/theme/index.css";
-import { clsx } from "@/ui/utils";
+import { NavigationHandler } from "../_components/navigation-handler";
 
-import "./globals.css";
+import "../globals.css";
 import * as styles from "./layout.css";
-
-const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,8 +17,9 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={clsx(outfit.className, themeClass, styles.root)}>{children}</body>
-    </html>
+    <>
+      <main className={styles.main}>{children}</main>
+      <NavigationHandler />
+    </>
   );
 }

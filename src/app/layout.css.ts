@@ -1,5 +1,4 @@
 import { vars } from "@/ui/theme/index.css";
-import { spacing } from "@/ui/theme/utils";
 
 import { style } from "@vanilla-extract/css";
 
@@ -14,9 +13,4 @@ export const root = style({
 
   minHeight: "min(844px, 100vh)",
   maxHeight: "100vh",
-});
-
-export const main = style({
-  padding: spacing(4),
-  paddingTop: spacing(8),
 });
