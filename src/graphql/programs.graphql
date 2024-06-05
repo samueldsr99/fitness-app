@@ -1,0 +1,28 @@
+query PopularPrograms {
+  programs {
+    id
+    name
+    previewImage {
+      url
+    }
+    difficulty
+  }
+}
+
+query ProgramById($id: ID!) {
+  program(where: { id: $id }) {
+    name
+    description
+    previewImage {
+      url
+    }
+    workouts {
+      id
+      name
+      previewImage {
+        url
+      }
+      expectedDuration
+    }
+  }
+}
