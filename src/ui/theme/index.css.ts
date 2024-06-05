@@ -26,6 +26,7 @@ globalStyle("h1", {
 
 globalStyle("h2", {
   ...fonts["2xl"],
+  fontWeight: fonts.semibold,
 
   "@media": {
     [screens.tablet]: {
