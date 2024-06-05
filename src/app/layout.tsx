@@ -5,7 +5,7 @@ import { Outfit } from "next/font/google";
 import { themeClass } from "@/ui/theme/index.css";
 import { clsx } from "@/ui/utils";
 
-import { NavigationHandler } from "./_components/NavigationHandler";
+import { NavigationHandler } from "./_components/navigation-handler";
 
 import "./globals.css";
 import * as styles from "./layout.css";

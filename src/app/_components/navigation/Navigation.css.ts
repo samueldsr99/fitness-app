@@ -4,10 +4,6 @@ import { spacing } from "@/ui/theme/utils";
 import { style } from "@vanilla-extract/css";
 
 export const root = style({
-  position: "absolute",
-  bottom: spacing(6),
-  left: spacing(5),
-  right: spacing(5),
   padding: spacing(3.5),
   backgroundColor: vars.color.primary.foreground,
 

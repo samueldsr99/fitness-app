@@ -3,7 +3,9 @@
 import { PropsWithChildren } from "react";
 import { usePathname } from "next/navigation";
 
-import { Navigation } from "./navigation";
+import { Navigation } from "../navigation";
+
+import * as styles from "./NavigationHandler.css";
 
 export const NavigationHandler = ({ children }: PropsWithChildren<{}>) => {
   const pathname = usePathname();
@@ -14,8 +16,8 @@ export const NavigationHandler = ({ children }: PropsWithChildren<{}>) => {
 
   return (
     <>
-      {children}
-      <footer>
+      <div className={styles.content}>{children}</div>
+      <footer className={styles.footer}>
         <Navigation />
       </footer>
     </>
