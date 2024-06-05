@@ -5354,6 +5354,13 @@ export type WorkoutsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type WorkoutsQuery = { __typename?: 'Query', workouts: Array<{ __typename?: 'Workout', id: string, name: string, difficulty: string, expectedDuration: number, previewImage: { __typename?: 'Asset', url: string }, exercises: Array<{ __typename?: 'Exercise', id: string, name: string, description?: string | null }> }> };
 
+export type WorkoutDetailsQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type WorkoutDetailsQuery = { __typename?: 'Query', workout?: { __typename?: 'Workout', name: string, difficulty: string, expectedDuration: number, previewImage: { __typename?: 'Asset', url: string }, exercises: Array<{ __typename?: 'Exercise', id: string, name: string, previewImage: { __typename?: 'Asset', url: string } }> } | null };
+
 
 export const PopularProgramsDocument = gql`
     query PopularPrograms {
@@ -5419,6 +5426,25 @@ export const WorkoutsDocument = gql`
   }
 }
     `;
+export const WorkoutDetailsDocument = gql`
+    query WorkoutDetails($id: ID!) {
+  workout(where: {id: $id}) {
+    name
+    difficulty
+    previewImage {
+      url
+    }
+    expectedDuration
+    exercises {
+      id
+      name
+      previewImage {
+        url
+      }
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -5428,6 +5454,7 @@ const PopularProgramsDocumentString = print(PopularProgramsDocument);
 const AllProgramsDocumentString = print(AllProgramsDocument);
 const ProgramByIdDocumentString = print(ProgramByIdDocument);
 const WorkoutsDocumentString = print(WorkoutsDocument);
+const WorkoutDetailsDocumentString = print(WorkoutDetailsDocument);
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     PopularPrograms(variables?: PopularProgramsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: PopularProgramsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
@@ -5441,6 +5468,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     Workouts(variables?: WorkoutsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: WorkoutsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<WorkoutsQuery>(WorkoutsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Workouts', 'query', variables);
+    },
+    WorkoutDetails(variables: WorkoutDetailsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: WorkoutDetailsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<WorkoutDetailsQuery>(WorkoutDetailsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'WorkoutDetails', 'query', variables);
     }
   };
 }

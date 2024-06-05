@@ -12,6 +12,7 @@ export const header = style({
 export const previewImage = style({
   width: "100%",
   height: "auto",
+  borderRadius: vars.border.radius["2xl"],
 });
 
 export const description = style({

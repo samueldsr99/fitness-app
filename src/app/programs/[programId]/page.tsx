@@ -1,9 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Header } from "@/app/_components/header";
 import { sdk } from "@/lib/hygraph-client";
-import { ChevronLeftIcon } from "@/ui/icons";
 
 import { WorkoutCard } from "./_components/workout-card";
 
@@ -24,10 +23,7 @@ export default async function ProgramDetailsPage({ params }: ProgramDetailsPageP
 
   return (
     <>
-      <div className={styles.header}>
-        <ChevronLeftIcon />
-        <Link href="/programs">Back to programs</Link>
-      </div>
+      <Header href="/programs" backLabel="Back to programs" />
 
       <Image
         src={program.previewImage.url}

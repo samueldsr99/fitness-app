@@ -14,3 +14,21 @@ query Workouts {
     }
   }
 }
+
+query WorkoutDetails($id: ID!) {
+  workout(where: { id: $id }) {
+    name
+    difficulty
+    previewImage {
+      url
+    }
+    expectedDuration
+    exercises {
+      id
+      name
+      previewImage {
+        url
+      }
+    }
+  }
+}
