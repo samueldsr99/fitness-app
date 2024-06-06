@@ -1,8 +1,11 @@
+import { getMetadata } from "@/constants/metadata";
 import { sdk } from "@/lib/hygraph-client";
 
 import { ProgramCard } from "../home/_components/program-card";
 
 import * as styles from "./page.css";
+
+export const metadata = getMetadata({ titleSuffix: "Programs" });
 
 export default async function ProgramsPage() {
   const { data } = await sdk.AllPrograms();

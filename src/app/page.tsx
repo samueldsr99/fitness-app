@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { getMetadata } from "@/constants/metadata";
 import { Button } from "@/ui/components";
 
 import * as styles from "./page.css";
+
+export const metadata = getMetadata({ titleSuffix: "Let's workout" });
 
 export default function IndexPage() {
   return (

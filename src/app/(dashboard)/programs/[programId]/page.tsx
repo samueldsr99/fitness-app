@@ -1,7 +1,9 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { Header } from "@/app/_components/header";
+import { getMetadata } from "@/constants/metadata";
 import { sdk } from "@/lib/hygraph-client";
 
 import { WorkoutCard } from "./_components/workout-card";
@@ -10,6 +12,18 @@ import * as styles from "./page.css";
 
 interface ProgramDetailsPageProps {
   params: { programId: string };
+}
+
+export async function generateMetadata({ params }: ProgramDetailsPageProps): Promise<Metadata> {
+  const { data } = await sdk.ProgramById({ id: params.programId });
+
+  const program = data.program;
+
+  if (!program) {
+    notFound();
+  }
+
+  return { ...getMetadata({ titleSuffix: program.name }), description: program.description };
 }
 
 export default async function ProgramDetailsPage({ params }: ProgramDetailsPageProps) {

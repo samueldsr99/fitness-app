@@ -1,3 +1,4 @@
+import { getMetadata } from "@/constants/metadata";
 import { sdk } from "@/lib/hygraph-client";
 
 import { WorkoutCard } from "../programs/[programId]/_components/workout-card";
@@ -6,6 +7,8 @@ import { Greeting } from "./_components/Greeting";
 import { ProgramsSlider } from "./_components/programs-slider";
 
 import * as styles from "./page.css";
+
+export const metadata = getMetadata({ titleSuffix: "Home" });
 
 export default async function HomePage() {
   const popularProgramsPromise = sdk.PopularPrograms();
