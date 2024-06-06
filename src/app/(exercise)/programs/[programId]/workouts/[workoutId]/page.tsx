@@ -43,17 +43,11 @@ export default async function WorkoutDetailsPage({ params }: WorkoutDetailsPageP
         </div>
       </div>
 
-      <h1>{workout.name}</h1>
+      <h1 className={styles.title}>{workout.name}</h1>
       <span className={styles.difficulty}>{workout.difficulty}</span>
 
       <ul className={styles.exercisesList}>
-        {[
-          ...workout.exercises,
-          ...workout.exercises,
-          ...workout.exercises,
-          ...workout.exercises,
-          ...workout.exercises,
-        ].map((exercise) => (
+        {workout.exercises.map((exercise) => (
           <ExerciseCard
             key={exercise.id}
             repetitions={exercise.repetitions ?? undefined}
@@ -65,7 +59,7 @@ export default async function WorkoutDetailsPage({ params }: WorkoutDetailsPageP
       </ul>
 
       <div className={styles.startSection}>
-        <Link href={`/programs/${params.programId}/workouts/${params.workoutId}/exercise`} passHref>
+        <Link href={`/programs/${params.programId}/workouts/${params.workoutId}/exercises`} passHref prefetch>
           <Button fullWidth size="lg" variant="primary">
             Lets start
           </Button>

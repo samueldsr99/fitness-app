@@ -19,7 +19,7 @@ export const ExerciseCard = ({ name, previewImageUrl, duration, repetitions }: E
           <Image className={styles.previewImage} src={previewImageUrl} alt={name} width={60} height={60} />
           <div>
             <p className={styles.name}>{name}</p>
-            <p className={styles.duration}>{duration ? `${duration} mins` : `${repetitions} reps`}</p>
+            <p className={styles.duration}>{duration ? `${duration} secs` : `${repetitions} reps`}</p>
           </div>
         </div>
         <PlayIcon className={styles.playIcon} />

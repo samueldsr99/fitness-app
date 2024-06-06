@@ -5431,7 +5431,7 @@ export type WorkoutDetailsQueryVariables = Exact<{
 }>;
 
 
-export type WorkoutDetailsQuery = { __typename?: 'Query', workout?: { __typename?: 'Workout', name: string, difficulty: string, expectedDuration: number, previewImage: { __typename?: 'Asset', url: string }, exercises: Array<{ __typename?: 'Exercise', id: string, name: string, duration?: number | null, repetitions?: number | null, previewImage: { __typename?: 'Asset', url: string } }> } | null };
+export type WorkoutDetailsQuery = { __typename?: 'Query', workout?: { __typename?: 'Workout', name: string, difficulty: string, expectedDuration: number, previewImage: { __typename?: 'Asset', url: string }, exercises: Array<{ __typename?: 'Exercise', id: string, name: string, duration?: number | null, repetitions?: number | null, previewImage: { __typename?: 'Asset', url: string }, videoUrl: { __typename?: 'Asset', url: string } }> } | null };
 
 
 export const PopularProgramsDocument = gql`
@@ -5511,6 +5511,9 @@ export const WorkoutDetailsDocument = gql`
       id
       name
       previewImage {
+        url
+      }
+      videoUrl {
         url
       }
       duration

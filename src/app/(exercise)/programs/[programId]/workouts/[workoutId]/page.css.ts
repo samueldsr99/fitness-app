@@ -11,6 +11,9 @@ export const previewImage = style({
   width: "100%",
   height: "auto",
   borderRadius: vars.border.radius["2xl"],
+  objectFit: "cover",
+  objectPosition: "top",
+  maxHeight: 400,
 });
 
 export const difficulty = style({
@@ -66,4 +69,8 @@ export const startSection = style({
   padding: spacing(4),
   maxWidth: vars.breakpoint.mobile,
   margin: "0 auto",
+});
+
+export const title = style({
+  marginTop: spacing(6),
 });
