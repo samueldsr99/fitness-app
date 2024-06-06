@@ -5,4 +5,5 @@ export { AnalyticsIcon } from "./AnalyticsIcon";
 export { ClockIcon } from "./ClockIcon";
 export { PlayIcon } from "./PlayIcon";
 export { ChevronLeftIcon } from "./ChevronLeftIcon";
+export { ChevronRightIcon } from "./ChevronRightIcon";
 export { XIcon } from "./XIcon";

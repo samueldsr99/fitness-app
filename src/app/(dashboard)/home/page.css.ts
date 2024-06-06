@@ -8,9 +8,6 @@ export const popularPrograms = style({
 
 export const popularProgramsSlides = style({
   marginTop: spacing(3),
-  overflowX: "auto",
-  display: "flex",
-  gap: 20,
 });
 
 export const workoutsOfTheDay = style({
