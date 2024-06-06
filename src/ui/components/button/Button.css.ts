@@ -25,7 +25,7 @@ export const variantPrimary = style({
     backgroundColor: vars.color.primary.hover,
   },
 
-  ":focus": {
+  ":active": {
     outline: `2px solid ${vars.color.primary.background}`,
     outlineOffset: "2px",
   },
@@ -35,7 +35,7 @@ export const variantSecondary = style({
   backgroundColor: vars.color.secondary.background,
   color: vars.color.secondary.foreground,
 
-  ":focus": {
+  ":active": {
     outline: `2px solid ${vars.color.base[100]}`,
     outlineOffset: "2px",
   },

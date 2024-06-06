@@ -12,3 +12,14 @@ export const popularProgramsSlides = style({
   display: "flex",
   gap: 20,
 });
+
+export const workoutsOfTheDay = style({
+  marginTop: spacing(3),
+});
+
+export const workoutsOfTheDayList = style({
+  marginTop: spacing(3),
+  display: "flex",
+  flexDirection: "column",
+  gap: spacing(3),
+});

@@ -37,3 +37,18 @@ query WorkoutDetails($id: ID!) {
     }
   }
 }
+
+query WorkoutsOfTheDay {
+  workouts(last: 3) {
+    id
+    name
+    difficulty
+    previewImage {
+      url
+    }
+    expectedDuration
+    program {
+      id
+    }
+  }
+}

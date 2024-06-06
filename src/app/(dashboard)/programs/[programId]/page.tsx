@@ -47,6 +47,7 @@ export default async function ProgramDetailsPage({ params }: ProgramDetailsPageP
             <WorkoutCard
               key={workout.id}
               name={workout.name}
+              difficulty={workout.difficulty}
               href={`/programs/${params.programId}/workouts/${workout.id}`}
               duration={workout.expectedDuration}
               previewImageUrl={workout.previewImage.url}

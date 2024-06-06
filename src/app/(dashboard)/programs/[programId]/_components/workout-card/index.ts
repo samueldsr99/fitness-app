@@ -1,1 +1,1 @@
-export { WorkoutCard } from "./workout-card";
+export { WorkoutCard } from "./WorkoutCard";

@@ -30,6 +30,7 @@ query ProgramById($id: ID!) {
     workouts {
       id
       name
+      difficulty
       previewImage {
         url
       }

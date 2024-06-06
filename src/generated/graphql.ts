@@ -4789,6 +4789,7 @@ export type Workout = Entity & Node & {
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   previewImage: Asset;
+  program?: Maybe<Program>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   /** User that last published this document */
@@ -4843,6 +4844,12 @@ export type WorkoutPreviewImageArgs = {
 };
 
 
+export type WorkoutProgramArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
 export type WorkoutPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -4884,13 +4891,13 @@ export type WorkoutConnection = {
 };
 
 export type WorkoutCreateInput = {
-  clx1pcsgc0etl07tcd0thfq9t?: InputMaybe<ProgramCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   difficulty: Scalars['String']['input'];
   exercises?: InputMaybe<ExerciseCreateManyInlineInput>;
   expectedDuration: Scalars['Int']['input'];
   name: Scalars['String']['input'];
   previewImage: AssetCreateOneInlineInput;
+  program?: InputMaybe<ProgramCreateOneInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -5022,6 +5029,7 @@ export type WorkoutManyWhereInput = {
   /** All values starting with the given string. */
   name_starts_with?: InputMaybe<Scalars['String']['input']>;
   previewImage?: InputMaybe<AssetWhereInput>;
+  program?: InputMaybe<ProgramWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -5077,12 +5085,12 @@ export enum WorkoutOrderByInput {
 }
 
 export type WorkoutUpdateInput = {
-  clx1pcsgc0etl07tcd0thfq9t?: InputMaybe<ProgramUpdateManyInlineInput>;
   difficulty?: InputMaybe<Scalars['String']['input']>;
   exercises?: InputMaybe<ExerciseUpdateManyInlineInput>;
   expectedDuration?: InputMaybe<Scalars['Int']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   previewImage?: InputMaybe<AssetUpdateOneInlineInput>;
+  program?: InputMaybe<ProgramUpdateOneInlineInput>;
 };
 
 export type WorkoutUpdateManyInlineInput = {
@@ -5262,6 +5270,7 @@ export type WorkoutWhereInput = {
   /** All values starting with the given string. */
   name_starts_with?: InputMaybe<Scalars['String']['input']>;
   previewImage?: InputMaybe<AssetWhereInput>;
+  program?: InputMaybe<ProgramWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -5419,7 +5428,7 @@ export type ProgramByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProgramByIdQuery = { __typename?: 'Query', program?: { __typename?: 'Program', name: string, description: string, previewImage: { __typename?: 'Asset', url: string }, workouts: Array<{ __typename?: 'Workout', id: string, name: string, expectedDuration: number, previewImage: { __typename?: 'Asset', url: string }, exercises: Array<{ __typename?: 'Exercise', id: string }> }> } | null };
+export type ProgramByIdQuery = { __typename?: 'Query', program?: { __typename?: 'Program', name: string, description: string, previewImage: { __typename?: 'Asset', url: string }, workouts: Array<{ __typename?: 'Workout', id: string, name: string, difficulty: string, expectedDuration: number, previewImage: { __typename?: 'Asset', url: string }, exercises: Array<{ __typename?: 'Exercise', id: string }> }> } | null };
 
 export type WorkoutsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5432,6 +5441,11 @@ export type WorkoutDetailsQueryVariables = Exact<{
 
 
 export type WorkoutDetailsQuery = { __typename?: 'Query', workout?: { __typename?: 'Workout', name: string, difficulty: string, expectedDuration: number, previewImage: { __typename?: 'Asset', url: string }, exercises: Array<{ __typename?: 'Exercise', id: string, name: string, duration?: number | null, repetitions?: number | null, previewImage: { __typename?: 'Asset', url: string }, videoUrl: { __typename?: 'Asset', url: string } }> } | null };
+
+export type WorkoutsOfTheDayQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type WorkoutsOfTheDayQuery = { __typename?: 'Query', workouts: Array<{ __typename?: 'Workout', id: string, name: string, difficulty: string, expectedDuration: number, previewImage: { __typename?: 'Asset', url: string }, program?: { __typename?: 'Program', id: string } | null }> };
 
 
 export const PopularProgramsDocument = gql`
@@ -5469,6 +5483,7 @@ export const ProgramByIdDocument = gql`
     workouts {
       id
       name
+      difficulty
       previewImage {
         url
       }
@@ -5522,6 +5537,22 @@ export const WorkoutDetailsDocument = gql`
   }
 }
     `;
+export const WorkoutsOfTheDayDocument = gql`
+    query WorkoutsOfTheDay {
+  workouts(last: 3) {
+    id
+    name
+    difficulty
+    previewImage {
+      url
+    }
+    expectedDuration
+    program {
+      id
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -5532,6 +5563,7 @@ const AllProgramsDocumentString = print(AllProgramsDocument);
 const ProgramByIdDocumentString = print(ProgramByIdDocument);
 const WorkoutsDocumentString = print(WorkoutsDocument);
 const WorkoutDetailsDocumentString = print(WorkoutDetailsDocument);
+const WorkoutsOfTheDayDocumentString = print(WorkoutsOfTheDayDocument);
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     PopularPrograms(variables?: PopularProgramsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: PopularProgramsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
@@ -5548,6 +5580,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     WorkoutDetails(variables: WorkoutDetailsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: WorkoutDetailsQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<WorkoutDetailsQuery>(WorkoutDetailsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'WorkoutDetails', 'query', variables);
+    },
+    WorkoutsOfTheDay(variables?: WorkoutsOfTheDayQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: WorkoutsOfTheDayQuery; errors?: GraphQLError[]; extensions?: any; headers: Headers; status: number; }> {
+        return withWrapper((wrappedRequestHeaders) => client.rawRequest<WorkoutsOfTheDayQuery>(WorkoutsOfTheDayDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'WorkoutsOfTheDay', 'query', variables);
     }
   };
 }

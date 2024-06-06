@@ -48,6 +48,7 @@ globalStyle("h3", {
 
 globalStyle("h4", {
   ...fonts.lg,
+  fontWeight: fonts.medium,
 });
 
 globalStyle("h5", {

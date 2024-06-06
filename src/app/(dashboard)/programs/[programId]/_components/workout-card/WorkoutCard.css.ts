@@ -19,7 +19,7 @@ export const link = style({
 
   transition: "transform 0.2s",
 
-  ":focus": {
+  ":active": {
     transform: "scale(0.95)",
   },
 });
@@ -31,6 +31,18 @@ export const leftContent = style({
 
 export const name = style({
   color: vars.color.secondary.foreground,
+  display: "flex",
+  alignItems: "center",
+});
+
+export const difficulty = style({
+  background: vars.color.primary.background,
+  color: vars.color.primary.foreground,
+  padding: spacing(0.5, 1),
+  borderRadius: vars.border.radius.sm,
+  marginLeft: spacing(2),
+
+  ...vars.font.xs,
 });
 
 export const previewImage = style({
