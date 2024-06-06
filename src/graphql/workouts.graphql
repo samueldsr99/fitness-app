@@ -29,6 +29,8 @@ query WorkoutDetails($id: ID!) {
       previewImage {
         url
       }
+      duration
+      repetitions
     }
   }
 }

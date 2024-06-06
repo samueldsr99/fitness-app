@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Header } from "@/app/_components/header";
 import { sdk } from "@/lib/hygraph-client";
+import { Button } from "@/ui/components";
 import { ClockIcon } from "@/ui/icons";
 
 import { ExerciseCard } from "./_components/exercise-card/ExerciseCard";
@@ -23,8 +25,8 @@ export default async function WorkoutDetailsPage({ params }: WorkoutDetailsPageP
   }
 
   return (
-    <div>
-      <Header href={`/programs/${params.programId}`} backLabel="Back to workout" />
+    <div className={styles.root}>
+      <Header href={`/programs/${params.programId}`} backLabel="Back to program" />
       <div className={styles.imageWrapper}>
         <Image
           src={workout.previewImage.url}
@@ -45,16 +47,30 @@ export default async function WorkoutDetailsPage({ params }: WorkoutDetailsPageP
       <span className={styles.difficulty}>{workout.difficulty}</span>
 
       <ul className={styles.exercisesList}>
-        {workout.exercises.map((exercise) => (
+        {[
+          ...workout.exercises,
+          ...workout.exercises,
+          ...workout.exercises,
+          ...workout.exercises,
+          ...workout.exercises,
+        ].map((exercise) => (
           <ExerciseCard
             key={exercise.id}
-            // repetitions={10}
-            duration={20}
+            repetitions={exercise.repetitions ?? undefined}
+            duration={exercise.duration ?? undefined}
             name={exercise.name}
             previewImageUrl={exercise.previewImage.url}
           />
         ))}
       </ul>
+
+      <div className={styles.startSection}>
+        <Link href={`/programs/${params.programId}/workouts/${params.workoutId}/exercise`} passHref>
+          <Button fullWidth size="lg" variant="primary">
+            Lets start
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -3,6 +3,10 @@ import { spacing } from "@/ui/theme/utils";
 
 import { style } from "@vanilla-extract/css";
 
+export const root = style({
+  paddingBottom: spacing(16),
+});
+
 export const previewImage = style({
   width: "100%",
   height: "auto",
@@ -49,4 +53,17 @@ export const durationText = style({
 export const exercisesList = style({
   marginTop: spacing(6),
   padding: 0,
+  display: "flex",
+  flexDirection: "column",
+  gap: spacing(4),
+});
+
+export const startSection = style({
+  position: "fixed",
+  bottom: 0,
+  left: 0,
+  right: 0,
+  padding: spacing(4),
+  maxWidth: vars.breakpoint.mobile,
+  margin: "0 auto",
 });

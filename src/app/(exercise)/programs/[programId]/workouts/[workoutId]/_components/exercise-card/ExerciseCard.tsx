@@ -4,20 +4,12 @@ import { PlayIcon } from "@/ui/icons";
 
 import * as styles from "./ExerciseCard.css";
 
-interface WithRepetitions {
-  repetitions: number;
-  duration?: undefined;
-}
-
-interface WithDuration {
-  duration: number;
-  repetitions?: undefined;
-}
-
 type ExerciseCardProps = {
   name: string;
   previewImageUrl: string;
-} & (WithRepetitions | WithDuration);
+  repetitions?: number;
+  duration?: number;
+};
 
 export const ExerciseCard = ({ name, previewImageUrl, duration, repetitions }: ExerciseCardProps) => {
   return (

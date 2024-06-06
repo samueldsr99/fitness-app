@@ -997,6 +997,7 @@ export type Exercise = Entity & Node & {
   description?: Maybe<Scalars['String']['output']>;
   /** Get the document in other stages */
   documentInStages: Array<Exercise>;
+  duration?: Maybe<Scalars['Int']['output']>;
   /** List of Exercise versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -1007,6 +1008,7 @@ export type Exercise = Entity & Node & {
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   /** User that last published this document */
   publishedBy?: Maybe<User>;
+  repetitions?: Maybe<Scalars['Int']['output']>;
   scheduledIn: Array<ScheduledOperation>;
   /** System stage field */
   stage: Stage;
@@ -1109,8 +1111,10 @@ export type ExerciseConnection = {
 export type ExerciseCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
+  duration?: InputMaybe<Scalars['Int']['input']>;
   name: Scalars['String']['input'];
   previewImage: AssetCreateOneInlineInput;
+  repetitions?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   videoUrl: AssetCreateOneInlineInput;
   workouts?: InputMaybe<WorkoutCreateManyInlineInput>;
@@ -1187,6 +1191,21 @@ export type ExerciseManyWhereInput = {
   documentInStages_every?: InputMaybe<ExerciseWhereStageInput>;
   documentInStages_none?: InputMaybe<ExerciseWhereStageInput>;
   documentInStages_some?: InputMaybe<ExerciseWhereStageInput>;
+  duration?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  duration_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  duration_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  duration_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  duration_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  duration_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  duration_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  duration_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;
@@ -1242,6 +1261,21 @@ export type ExerciseManyWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   publishedBy?: InputMaybe<UserWhereInput>;
+  repetitions?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  repetitions_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  repetitions_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  repetitions_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  repetitions_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  repetitions_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  repetitions_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  repetitions_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
@@ -1272,20 +1306,26 @@ export enum ExerciseOrderByInput {
   CreatedAtDesc = 'createdAt_DESC',
   DescriptionAsc = 'description_ASC',
   DescriptionDesc = 'description_DESC',
+  DurationAsc = 'duration_ASC',
+  DurationDesc = 'duration_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  RepetitionsAsc = 'repetitions_ASC',
+  RepetitionsDesc = 'repetitions_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC'
 }
 
 export type ExerciseUpdateInput = {
   description?: InputMaybe<Scalars['String']['input']>;
+  duration?: InputMaybe<Scalars['Int']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   previewImage?: InputMaybe<AssetUpdateOneInlineInput>;
+  repetitions?: InputMaybe<Scalars['Int']['input']>;
   videoUrl?: InputMaybe<AssetUpdateOneInlineInput>;
   workouts?: InputMaybe<WorkoutUpdateManyInlineInput>;
 };
@@ -1309,7 +1349,9 @@ export type ExerciseUpdateManyInlineInput = {
 
 export type ExerciseUpdateManyInput = {
   description?: InputMaybe<Scalars['String']['input']>;
+  duration?: InputMaybe<Scalars['Int']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
+  repetitions?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type ExerciseUpdateManyWithNestedWhereInput = {
@@ -1409,6 +1451,21 @@ export type ExerciseWhereInput = {
   documentInStages_every?: InputMaybe<ExerciseWhereStageInput>;
   documentInStages_none?: InputMaybe<ExerciseWhereStageInput>;
   documentInStages_some?: InputMaybe<ExerciseWhereStageInput>;
+  duration?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  duration_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  duration_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  duration_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  duration_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  duration_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  duration_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  duration_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;
@@ -1464,6 +1521,21 @@ export type ExerciseWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   publishedBy?: InputMaybe<UserWhereInput>;
+  repetitions?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  repetitions_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  repetitions_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  repetitions_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  repetitions_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  repetitions_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  repetitions_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  repetitions_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
@@ -5359,7 +5431,7 @@ export type WorkoutDetailsQueryVariables = Exact<{
 }>;
 
 
-export type WorkoutDetailsQuery = { __typename?: 'Query', workout?: { __typename?: 'Workout', name: string, difficulty: string, expectedDuration: number, previewImage: { __typename?: 'Asset', url: string }, exercises: Array<{ __typename?: 'Exercise', id: string, name: string, previewImage: { __typename?: 'Asset', url: string } }> } | null };
+export type WorkoutDetailsQuery = { __typename?: 'Query', workout?: { __typename?: 'Workout', name: string, difficulty: string, expectedDuration: number, previewImage: { __typename?: 'Asset', url: string }, exercises: Array<{ __typename?: 'Exercise', id: string, name: string, duration?: number | null, repetitions?: number | null, previewImage: { __typename?: 'Asset', url: string } }> } | null };
 
 
 export const PopularProgramsDocument = gql`
@@ -5441,6 +5513,8 @@ export const WorkoutDetailsDocument = gql`
       previewImage {
         url
       }
+      duration
+      repetitions
     }
   }
 }
